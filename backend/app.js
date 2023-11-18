@@ -4,14 +4,16 @@ const app = express();
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const path = require("path");
 
 app.use(cors({
-  origin: 'https://nexus-p1en.vercel.app/',
+  origin: 'https://nexus-p1en.vercel.app',
   credentials: true
 }));
 
 app.use(express.json());
 app.use(cookieParser());
+app.use("/",express.static(path.join(_dirname,"./uploads")));
 app.use("/test", (req, res) => {
   res.send("Hello world!");
 });
